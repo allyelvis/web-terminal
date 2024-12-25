@@ -1,0 +1,22 @@
+{
+  "name": "web-terminal",
+  "version": "1.0.0",
+  "description": "web terminal extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allyelvis/web-terminal.git"
+  },
+  "keywords": [
+    "terminal"
+  ],
+  "author": "Ally Elvis Nzeyimana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/allyelvis/web-terminal/issues"
+  },
+  "homepage": "https://github.com/allyelvis/web-terminal#readme"
+}
