@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web IDE</title>
+    <style>
+        textarea { width: 80%; height: 300px; }
+        #output, #terminalOutput { width: 80%; height: 150px; border: 1px solid #ccc; white-space: pre-wrap; overflow-y: scroll;}
+    </style>
+</head>
+<body>
+    <h1>Web IDE</h1>
+    <textarea id="code"></textarea><br>
+    <button onclick="executeCode()">Run</button>
+    <h2>Output:</h2>
+    <div id="output"></div>
+
+    <h1>Terminal</h1>
+    <input type="text" id="terminalInput" style="width: 80%;"><br>
+    <button onclick="executeTerminal()">Run</button>
+    <h2>Terminal Output:</h2>
+    <div id="terminalOutput"></div>
+
+    <script>
+        function executeCode() {
+            const code = document.getElementById('code').value;
+            fetch('/execute', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: code })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('output').innerText = data.output + data.error;
+            });
+        }
+
+        function executeTerminal() {
+            const command = document.getElementById('terminalInput').value;
+            fetch('/terminal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ command: command })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('terminalOutput').innerText = data.output + data.error;
+            });
+        }
+    </script>
+</body>
+</html>
